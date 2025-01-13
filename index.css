@@ -1,0 +1,83 @@
+body {
+    font-family: Times, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #003399;
+}
+
+
+.header h1 {
+    font-size: 2rem; 
+    margin: 0;
+    font-weight: normal;
+}
+
+.ticket-form {
+    max-width: 700px;
+    margin: 80px auto; 
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 15px;
+    margin: 8px 0;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+textarea {
+    height: 150px;
+    resize: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #153974; 
+}
+
+select {
+    appearance: none;
+    background-size: 12px;
+}
+
+.submit-button {
+    font-family: Times, serif;
+    background-color: #153974; 
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+    transition: 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #00287a; 
+}
