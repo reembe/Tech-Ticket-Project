@@ -6,6 +6,47 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="header">
+        <img src="logo.jpg">
+    </div>
+    <form class="ticket-form">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email">
+        </div>
+        <div class="form-group">
+            <label for="room-number">Room Number:</label>
+            <input type="text">
+        </div>
+        <div class="form-group">
+            <label for="device-type">Device:</label>
+            <input type="text">
+        </div>
+        <div class="form-group">
+            <label for="device-id">Device Number:</label>
+            <input type="text">
+        </div>
+        <div class="form-group">
+            <label for="reason">Reason:</label>
+            <select>
+                <option value="hardware">Hardware Issue</option>
+                <option value="software">Software Issue</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="incident-date">Date of Incident:</label>
+            <input type="date">
+        </div>
+        <div class="form-group">
+            <label for="additional-info">Additional Information:</label>
+            <textarea></textarea>
+        </div>
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
 </body>
 </html>
