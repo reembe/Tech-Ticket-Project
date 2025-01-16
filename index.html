@@ -1,54 +1,146 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <title>Document</title>
+    <title>Support Ticket Form</title>
 </head>
 <body>
-    <div class="header">
-        <img src="logo.jpg">
-    </div>
-    <form class="ticket-form">
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name-el"> 
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email-el">
-        </div>
-        <div class="form-group">
-            <label for="room-number">Room Number:</label>
-            <input type="text" id="room-number-el">
-        </div>
-        <div class="form-group">
-            <label for="device-type">Device:</label>
-            <input type="text" id="device-type-el">
-        </div>
-        <div class="form-group">
-            <label for="device-id">Device Number:</label>
-            <input type="text"  id="device-number-el">
-        </div>
-        <div class="form-group">
-            <label for="reason">Reason:</label>
-            <select id="select-el">
-                <option value="hardware">Hardware Issue</option>
-                <option value="software">Software Issue</option>
-                <option value="other">Other</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="incident-date">Date of Incident:</label>
-            <input type="date" id="incident-date-el">
-        </div>
-        <div class="form-group">
-            <label for="additional-info">Additional Information:</label>
-            <textarea id="additional-info-el"></textarea>
-        </div>
-        <button type="submit" class="submit-button" id="submit-el">Submit</button>
-    </form>
+    <header class="header">
+        <img src="logo.jpg" alt="Company Logo">
+    </header>
+    <main>
+        <form class="ticket-form" method="POST" action="/submit">
+            <div class="form-group">
+                <label for="name-el">Name:</label>
+                <input type="text" id="name-el" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email-el">Email:</label>
+                <input type="email" id="email-el" placeholder="Enter your email address" required>
+            </div>
+            <div class="form-group">
+                <label for="room-number-el">Room Number:</label>
+                <input type="text" id="room-number-el" placeholder="Enter room number" required>
+            </div>
+            <div class="form-group">
+                <label for="device-type-el">Device:</label>
+                <input type="text" id="device-type-el" placeholder="Enter device type" required>
+            </div>
+            <div class="form-group">
+                <label for="device-number-el">Device Number:</label>
+                <input type="text" id="device-number-el" placeholder="Enter device number" required>
+            </div>
+            <div class="form-group">
+                <label for="select-el">Reason:</label>
+                <select id="select-el">
+                    <option value="hardware">Hardware Issue</option>
+                    <option value="software">Software Issue</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="incident-date-el">Date of Incident:</label>
+                <input type="date" id="incident-date-el">
+            </div>
+            <div class="form-group">
+                <label for="additional-info-el">Additional Information:</label>
+                <textarea id="additional-info-el" placeholder="Provide any additional details"></textarea>
+            </div>
+            <button type="submit" class="submit-button" id="submit-el">Submit Ticket</button>
+        </form>
+    </main>
+    <script type="module" src="index.js"></script>
 </body>
-<script type="module" src="index.js"></script>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Calistoga&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="index.css">
+    </head>
+
+    <body>
+        <section id="logged-out-view">
+            <div class="container">
+                <img src="logo.jpg">
+
+                <div class="auth-fields-and-buttons">
+                    <input id="email-input" type="email" placeholder="Email">
+                    <input id="password-input" type="password" placeholder="Password">
+                    
+                    <button id="sign-in-btn" class="primary-btn">Sign in</button>
+                    <button id="create-account-btn" class="secondary-btn">Create Account</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="logged-in-view">
+            <div class="container">
+                <nav>
+                    <button id="sign-out-btn" class="icon-btn">
+                        <img src="assets/icons/logOut.jpg" class="icon-img-btn">
+                    </button>
+                </nav>
+
+                <div class="post-section">
+                    <textarea id="post-input" placeholder="kms..."></textarea>
+                    <button id="post-btn" class="primary-btn">Post</button>
+                </div>
+                <form class="ticket-form" method="POST" action="/submit">
+                    <div class="form-group">
+                        <label for="name-el">Name:</label>
+                        <input type="text" id="name-el" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email-el">Email:</label>
+                        <input type="email" id="email-el" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="room-number-el">Room Number:</label>
+                        <input type="text" id="room-number-el" placeholder="Enter room number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="device-type-el">Device:</label>
+                        <input type="text" id="device-type-el" placeholder="Enter device type" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="device-number-el">Device Number:</label>
+                        <input type="text" id="device-number-el" placeholder="Enter device number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="select-el">Reason:</label>
+                        <select id="select-el">
+                            <option value="hardware">Hardware Issue</option>
+                            <option value="software">Software Issue</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="incident-date-el">Date of Incident:</label>
+                        <input type="date" id="incident-date-el">
+                    </div>
+                    <div class="form-group">
+                        <label for="additional-info-el">Additional Information:</label>
+                        <textarea id="additional-info-el" placeholder="Provide any additional details"></textarea>
+                    </div>
+                    <button type="submit" class="submit-button" id="submit-el">Submit Ticket</button>
+                </form>                    
+                
+                <button id="sign-in-with-google-btn" class="provider-btn">
+                        <img src="assets/providers/google.png" class="google-btn-logo">
+                </button>
+            </div>
+        </section>
+        <script src="index (1).js" type="module"></script>
+    </body>
 </html>
+
+    

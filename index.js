@@ -5,15 +5,14 @@ import { collection } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-f
 
 //firebase stuff
 const firebaseConfig = {
-    apiKey: "AIzaSyBqNOavW-oa6P_D2HAlnQGswYcdGw4Cvyw",
-    authDomain: "techsupport-d9459.firebaseapp.com",
-    databaseURL: "https://techsupport-d9459-default-rtdb.firebaseio.com",
-    projectId: "techsupport-d9459",
-    storageBucket: "techsupport-d9459.firebasestorage.app",
-    messagingSenderId: "187298409804",
-    appId: "1:187298409804:web:2956c996f9fe3e9f56f3e9"
-}
-;
+    apiKey: "AIzaSyBUac8dpJe65YaBeE4YOIvq-Zk0Dw1TB9c",
+    authDomain: "techticket-9ff59.firebaseapp.com",
+    projectId: "techticket-9ff59",
+    storageBucket: "techticket-9ff59.firebasestorage.app",
+    messagingSenderId: "837694732453",
+    appId: "1:837694732453:web:78ef6e66aecb06dc4df54c"
+  };
+
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
@@ -27,7 +26,6 @@ const selectEl = document.getElementById("select-el")
 const incidentDateEl = document.getElementById("incident-date-el")
 const additionalInfoEl = document.getElementById("additional-info-el")
 const submitEl = document.getElementById("submit-el")
-
 
 //functions
 submitEl.addEventListener("click", addPostToDB)
@@ -46,7 +44,7 @@ async function addPostToDB() {
     console.log("AAAAAAAA")
 
     try {
-        const docRef = await addDoc(collection(db, "tickets"), {
+        const docRef = await addDoc(collection(db, "Tickets"), {
             name: name,
             email: email,
             roomNumber: roomNumber,
