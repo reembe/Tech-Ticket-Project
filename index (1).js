@@ -1,4 +1,4 @@
-/* === Imports === */
+//import statements
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"
 import { getAuth } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js"
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js"
@@ -9,7 +9,7 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/11.1.0/firebase
 import { collection } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js"
 import { addDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js"
 import { serverTimestamp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js"
-/* === Firebase Setup === */
+//firebase stuff
 const firebaseConfig = {
     apiKey: "AIzaSyBUac8dpJe65YaBeE4YOIvq-Zk0Dw1TB9c",
     authDomain: "techticket-9ff59.firebaseapp.com",
@@ -21,13 +21,9 @@ const firebaseConfig = {
 
 const app= initializeApp(firebaseConfig)
 const auth = getAuth(app)
-console.log(auth)
 const db = getFirestore(app)
-console.log(db)
 
-/* === UI === */
-
-/* == UI - Elements == */
+//elements
 const nameEl = document.getElementById("name-el")
 const emailEl = document.getElementById("email-el")
 const roomNumberEl = document.getElementById("room-number-el")
@@ -37,62 +33,46 @@ const selectEl = document.getElementById("select-el")
 const incidentDateEl = document.getElementById("incident-date-el")
 const additionalInfoEl = document.getElementById("additional-info-el")
 const submitEl = document.getElementById("submit-el")
+const logoutEl = document.getElementById("logout-el")
 
-const textareaEl = document.getElementById("post-input")
-const postButtonEl = document.getElementById("post-btn")
+const nameSubmitEl = document.getElementById("name-submit-el")
+const emailSubmitEl = document.getElementById("email-submit-el")
+const roomNumberSubmitEl = document.getElementById("room-number-submit-el")
+const deviceTypeSubmitEl = document.getElementById("device-type-submit-el")
+const deviceNumberSubmitEl = document.getElementById("device-number-submit-el")
+const selectSubmitEl = document.getElementById("select-submit-el")
+const incidentDateSubmitEl = document.getElementById("incident-date-submit-el")
+const additionalInfoSubmitEl = document.getElementById("additional-info-submit-el")
 
 const viewLoggedOut = document.getElementById("logged-out-view")
 const viewLoggedIn = document.getElementById("logged-in-view")
-
-const signInWithGoogleButtonEl = document.getElementById("sign-in-with-google-btn")
+const viewSubmitted = document.getElementById("form-completed-view")
 
 const emailInputEl = document.getElementById("email-input")
 const passwordInputEl = document.getElementById("password-input")
 
 const signInButtonEl = document.getElementById("sign-in-btn")
-const signOutButtonEl = document.getElementById("sign-out-btn")
 const createAccountButtonEl = document.getElementById("create-account-btn")
 
-const userProfilePictureEl = document.getElementById("user-profile-picture")
-const userGreetingEl = document.getElementById("user-greeting")
-/* == UI - Event Listeners == */
-postButtonEl.addEventListener("click", addPostToDB)
-
-signInWithGoogleButtonEl.addEventListener("click", authSignInWithGoogle)
-
+submitEl.addEventListener("click", addPostToDB)
 signInButtonEl.addEventListener("click", authSignInWithEmail)
-signOutButtonEl.addEventListener("click", authSignOut)
 createAccountButtonEl.addEventListener("click", authCreateAccountWithEmail)
+logoutEl.addEventListener("click", showLoggedOutView)
 
-/* === Main Code === */
+//main
 
 showLoggedOutView()
-console.log(app.options.projectId)
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/auth.user
       const uid = user.uid;
       showLoggedInView()
     } else {
-      // User is signed out
       showLoggedOutView()
     }
 });
 
-/* === Functions === */
-function showProfilePicture(imgElement, user) {
-    if(user.photoURL) {
-        imgElement.src = user.photoURL
-    }
-}
-
-/* = Functions - Firebase - Authentication = */
-
-function authSignInWithGoogle() {
-    console.log("Sign in with Google")
-}
+//functions
 
 function authSignInWithEmail() {
     console.log("Sign in with email and password")
@@ -102,11 +82,8 @@ function authSignInWithEmail() {
 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            //Signed in
             const user = userCredential.user
             showLoggedInView()
-            showUserGreeting(userGreetingEl, user)
-            showProfilePicture(userProfilePictureEl, user)
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -124,7 +101,6 @@ function authCreateAccountWithEmail() {
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // Signed up 
             const user = userCredential.user;
             showLoggedInView()
         })
@@ -135,30 +111,19 @@ function authCreateAccountWithEmail() {
         });
 }
 
-function authSignOut() {
-    signOut(auth).then(() => {
-        //Sign-out successful
-        showLoggedOutView()
-    }).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + " " + errorMessage)
-    })
-}
-
-/* = Functions - Firebase - Cloud Firestore = */
-
 
 async function addPostToDB() {
    try {
-    let name = nameEl.value
-    let email = emailEl.value
-    let roomNumber = roomNumberEl.value
-    let deviceType = deviceTypeEl.value
-    let deviceNumber = deviceNumberEl.value
-    let select = selectEl.value
-    let incidentDate = incidentDateEl.value
-    let additionalInfo = additionalInfoEl.value
+    const name = nameEl.value
+    const email = emailEl.value
+    const roomNumber = roomNumberEl.value
+    const deviceType = deviceTypeEl.value
+    const deviceNumber = deviceNumberEl.value
+    const select = selectEl.value
+    const incidentDate = incidentDateEl.value
+    const additionalInfo = additionalInfoEl.value
+
+    showSubmittedView(name, email, roomNumber, deviceType, deviceNumber, select, incidentDate, additionalInfo)
 
     const docRef = await addDoc(collection(db, "Tickets"), {
         
@@ -177,13 +142,11 @@ async function addPostToDB() {
    } catch(e) {
     console.error("Error adding document: ", e)
    }
+   
 }
- 
-
-/* == Functions - UI Functions == */
- 
 
 function showLoggedOutView() {
+    hideView(viewSubmitted)
     hideView(viewLoggedIn)
     showView(viewLoggedOut)
 }
@@ -192,6 +155,20 @@ function showLoggedOutView() {
 function showLoggedInView() {
     hideView(viewLoggedOut)
     showView(viewLoggedIn)
+}
+
+function showSubmittedView(name, email, roomNumber, deviceType, deviceNumber, select, incidentDate, additionalInfo) {
+    hideView(viewLoggedIn)
+    showView(viewSubmitted)
+
+    nameSubmitEl.innerHTML = "Name: " + name
+    emailSubmitEl.innerHTML = "Email: " + email
+    roomNumberSubmitEl.innerHTML = "Room Number: " + roomNumber
+    deviceTypeSubmitEl.innerHTML = "Device Type: " + deviceType
+    deviceNumberSubmitEl.innerHTML = "Device Number: " + deviceNumber
+    selectSubmitEl.innerHTML = "Reason: " + select
+    incidentDateSubmitEl.innerHTML = "Incident Date: " + incidentDate
+    additionalInfoSubmitEl.innerHTML = "Additional Info: " + additionalInfo
 }
  
  
@@ -203,4 +180,8 @@ function showView(view) {
 function hideView(view) {
     view.style.display = "none"
 }
-//credit: coursera
+
+submitEl.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent the default form submission
+    
+});
